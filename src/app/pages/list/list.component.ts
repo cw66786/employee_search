@@ -8,7 +8,9 @@ import { Employee } from 'src/app/interfaces/reqres';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  employeeList: Employee[] | undefined;
+  employeeList!: Employee[];
+  userInput: string = '';
+  
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -20,5 +22,7 @@ export class ListComponent implements OnInit {
           return 1;
         }))
     );
+
+    this.employeeService.employee$.subscribe(res => this.userInput = res);
   }
 }

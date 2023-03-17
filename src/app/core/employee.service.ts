@@ -10,9 +10,9 @@ export class EmployeeService {
   private baseUrl: string = 'https://reqres.in/api/users'
   private page2: string = '?page=2'
 
-  employeeList: string[]= [];
-  employeeListBehave = new BehaviorSubject(this.employeeList);
-  employeeList$ = this.employeeListBehave.asObservable();
+  employee: string = '';
+  employeeBehave = new BehaviorSubject(this.employee);
+  employee$ = this.employeeBehave.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -31,7 +31,8 @@ export class EmployeeService {
 
 
 getSingleEmployee(userInput: string){
-  return 'works';
+  this.employee = userInput;
+  this.employeeBehave.next(this.employee);
 }
 
 

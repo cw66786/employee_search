@@ -8,6 +8,7 @@ export interface Root {
   }
   
   export interface Employee {
+    filter(arg0: (employee: { first_name: string; last_name: string }) => boolean): Employee
     id: number
     email: string
     first_name: string

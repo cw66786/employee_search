@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { debounceTime, filter, fromEvent, Subscription, switchMap } from 'rxjs';
+import { debounceTime, filter, fromEvent, Subscription, switchMap, tap } from 'rxjs';
 import { EmployeeService } from 'src/app/core/employee.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('searchBox', {static: true}) input!: ElementRef;
 
   private eventSubscription!: Subscription;
+ 
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -21,7 +22,7 @@ export class SearchComponent implements OnInit {
      filter((_)=>{
        return this.input.nativeElement.value.trim() !== '';
      }),
-     switchMap((_)=>{
+     tap((_)=>{
        return this.employeeService.getSingleEmployee(
          this.input.nativeElement.value
        );
