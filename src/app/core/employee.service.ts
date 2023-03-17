@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,13 @@ export class EmployeeService {
 
 
   getEmployeeList(){
-    return this.http.get(this.baseUrl + this.page2), tap((employees: string[])=>{
-      this.employeeList = employees;
-      this.employeeListBehave.next(this.employeeList);
-    })
+    return this.http.get(this.baseUrl + this.page2).pipe(
+      map((res)=>{
+        console.log(res)
+        return res;
+      
+      })
+    )
 
   }
 
