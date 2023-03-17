@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
+import { Root } from '../interfaces/reqres';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private baseUrl: string = 'https://regres.in/api/'
+  private baseUrl: string = 'https://reqres.in/api/users'
   private page2: string = '?page=2'
 
   employeeList: string[]= [];
@@ -18,10 +19,10 @@ export class EmployeeService {
 
 
   getEmployeeList(){
-    return this.http.get(this.baseUrl + this.page2).pipe(
+    return this.http.get<Root>(this.baseUrl + this.page2).pipe(
       map((res)=>{
-        console.log(res)
-        return res;
+        
+        return res.data;
       
       })
     )
