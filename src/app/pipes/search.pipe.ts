@@ -7,11 +7,11 @@ import { Employee } from '../interfaces/reqres';
 export class SearchPipe implements PipeTransform {
 
   transform(employee: Employee[], userInput: string): Employee[] {
-    let trimmed = userInput.trim();
-    if ( employee && trimmed !== '') {
+    
+    if (userInput) {
       return employee.filter( (employee: { first_name: string; last_name: string; }) => {
-        return employee.first_name.toLowerCase().includes(trimmed.toLowerCase()) ||
-        employee.last_name.toLowerCase().includes(trimmed.toLowerCase())
+        return employee.first_name.toLowerCase().includes(userInput.toLowerCase()) ||
+        employee.last_name.toLowerCase().includes(userInput.toLowerCase())
         })
     }
     else  

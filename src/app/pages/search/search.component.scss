@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato';
+  
+}
+
+
+$grey: #CCCCCC;
+$blue: #2B537D;
+
+
+.wrapper{
+    
+    width: fit-content;
+    margin-left: 5vw;
+    margin-bottom: 10px;
+    
+
+}
+input{
+    height: 1.5rem;
+    width: 10rem;
+    font-size: 1.25rem;
+}
+
+.input:focus{
+    border: 2px solid $blue;
+   
+}
